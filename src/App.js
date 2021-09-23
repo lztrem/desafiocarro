@@ -32,7 +32,20 @@ flex-direction: column;
 align-items: center;
 
 `
+const Carrosbuy = styled.div`
+overflow:auto;
+border:2px solid blue;
+width: 30vw;
+height: 40vw;
 
+
+`
+
+const Carrosbonito = styled.div`
+display:flex;
+justify-content: space-around;
+
+`
 class App extends Component {
   state = {
     carros:[{
@@ -89,7 +102,10 @@ class App extends Component {
       preço:138000,
       tipo:"Hacth"
 
-    }] 
+    }],
+
+    carrosComprados:[]
+
 
   }
 
@@ -98,11 +114,13 @@ render(){
     <div>
     <h1>Loja de carros!</h1>
     <div>
+      <Carrosbonito>
     <Box>
       {this.state.carros.map((item)=>(
       <BoxCarros>
         
         <h2>{item.nome}</h2>
+        <button>Add</button>
         <BoxP>
         <p><strong>Montadora: </strong>{item.montadora}</p>
         <p><strong>Preço: </strong>R${item.preço}</p>
@@ -114,6 +132,19 @@ render(){
       </BoxCarros>
       ))}
     </Box>
+    <Carrosbuy>
+      <div>
+      {this.state.carrosComprados.map((item)=>(
+        <div>
+          <div>
+            <h2>{item.nome}</h2>
+            <button>X</button>
+          </div>
+        </div>
+      ))}
+      </div>
+    </Carrosbuy>
+    </Carrosbonito>
     </div>
     <GlobalStyle />
     </div>
