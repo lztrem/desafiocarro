@@ -52,62 +52,77 @@ class App extends Component {
       nome:"Jetta",
       montadora:"Volkswagen",
       preço:144000,
-      tipo:"Sedan"
+      tipo:"Sedan",
+      id:1
 
     },{
       nome:"Polo",
       montadora:"Volkswagen",
       preço:70000,
-      tipo:"Hatch"
+      tipo:"Hatch",
+      id:2
 
     },{
       nome:"T-Cross",
       montadora:"Volkswagen",
       preço:123000,
-      tipo:"SUV"
+      tipo:"SUV",
+      id:3
 
     },{
       nome:"Tiguan R-line",
       montadora:"Volkswagen",
       preço:146000,
-      tipo:"SUV"
+      tipo:"SUV",
+      id:4
 
     },{
       nome:"Civic",
       montadora:"Honda",
       preço:115000,
-      tipo:"Sedan"
+      tipo:"Sedan",
+      id:5
 
     },{
       nome:"Corolla",
       montadora:"Toyota",
       preço:110000,
-      tipo:"Sedan"
+      tipo:"Sedan",
+      id:6
 
     },{
       nome:"Corolla Cross",
       montadora:"Toyota",
       preço:184000,
-      tipo:"SUV"
+      tipo:"SUV",
+      id:7
 
     },{
       nome:"Compass",
       montadora:"Jeep",
       preço:132000,
-      tipo:"SUV"
+      tipo:"SUV",
+      id:8
 
     },{
       nome:"Golf GTI",
       montadora:"Volkswagen",
       preço:138000,
-      tipo:"Hacth"
+      tipo:"Hacth",
+      id:9
+
 
     }],
 
     carrosComprados:[]
 
 
-  }
+  } 
+    adicionarCarros = (carro) => {
+      this.setState({
+        carrosComprados: this.state.carrosComprados.concat(carro)
+      })
+    }
 
 render(){
   return(
@@ -120,7 +135,7 @@ render(){
       <BoxCarros>
         
         <h2>{item.nome}</h2>
-        <button>Add</button>
+        <button onClick={()=>this.adicionarCarros(item)}>Add</button>
         <BoxP>
         <p><strong>Montadora: </strong>{item.montadora}</p>
         <p><strong>Preço: </strong>R${item.preço}</p>
@@ -139,6 +154,11 @@ render(){
           <div>
             <h2>{item.nome}</h2>
             <button>X</button>
+            <div>
+            <p><strong>Montadora: </strong>{item.montadora}</p>
+            <p><strong>Preço: </strong>R${item.preço}</p>
+            <p><strong>Tipo: </strong>{item.tipo}</p>
+            </div>
           </div>
         </div>
       ))}
