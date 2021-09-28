@@ -124,6 +124,19 @@ class App extends Component {
       })
     }
 
+removerCarros = (id) => {
+
+    this.setState({
+       carrosComprados: this.state.carrosComprados.filter((item)=>{
+          return(item.id !== id)
+          
+       })
+       
+
+    })
+
+}
+
 render(){
   return(
     <div>
@@ -147,13 +160,14 @@ render(){
       </BoxCarros>
       ))}
     </Box>
+    <div>
     <Carrosbuy>
       <div>
       {this.state.carrosComprados.map((item)=>(
         <div>
           <div>
             <h2>{item.nome}</h2>
-            <button>X</button>
+            <button onClick={()=>this.removerCarros(item.id)}>X</button>
             <div>
             <p><strong>Montadora: </strong>{item.montadora}</p>
             <p><strong>Preço: </strong>R${item.preço}</p>
@@ -163,8 +177,17 @@ render(){
         </div>
       ))}
       </div>
+      
     </Carrosbuy>
+    <div>
+       <h2>Total</h2>
+       <h2>{this.state.carrosComprados.reduce((a,b)=>
+       a+b.preço,0
+       )}</h2>
+    </div>
+    </div>
     </Carrosbonito>
+
     </div>
     <GlobalStyle />
     </div>
