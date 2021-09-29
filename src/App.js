@@ -10,13 +10,18 @@ const GlobalStyle = createGlobalStyle`
 `
 const Box = styled.div `
 display: flex;
-background-color: green;
 width: 65vw;
 height: 34vw;
 flex-wrap:wrap;
+
 `
+const Title = styled.h1`
+text-align: center;
+
+
+` 
+
 const BoxCarros = styled.div`
-background-color: red;
 width: 15vw;
 height: 10vw;
 border:solid 2px black;
@@ -24,7 +29,6 @@ margin: 0.5rem;
 `
 
 const BoxP = styled.div`
-background-color: purple;
 height: 6.5vw;
 padding: 0.5rem;
 display: flex;
@@ -140,7 +144,7 @@ removerCarros = (id) => {
 render(){
   return(
     <div>
-    <h1>Loja de carros!</h1>
+    <Title>Loja de carros!</Title>
     <div>
       <Carrosbonito>
     <Box>
@@ -151,7 +155,7 @@ render(){
         <button onClick={()=>this.adicionarCarros(item)}>Add</button>
         <BoxP>
         <p><strong>Montadora: </strong>{item.montadora}</p>
-        <p><strong>Preço: </strong>R${item.preço}</p>
+        <p><strong>Preço: </strong>{item.preço.toLocaleString("pt-BR",{style: "currency",currency:"BRL", currencyDisplay:"symbol"})}</p>
         <p><strong>Tipo: </strong>{item.tipo}</p>
         </BoxP>
 
@@ -170,7 +174,7 @@ render(){
             <button onClick={()=>this.removerCarros(item.id)}>X</button>
             <div>
             <p><strong>Montadora: </strong>{item.montadora}</p>
-            <p><strong>Preço: </strong>R${item.preço}</p>
+            <p><strong>Preço: </strong>{item.preço.toLocaleString("pt-BR",{style: "currency",currency:"BRL", currencyDisplay:"symbol"})}</p>
             <p><strong>Tipo: </strong>{item.tipo}</p>
             </div>
           </div>
@@ -180,10 +184,9 @@ render(){
       
     </Carrosbuy>
     <div>
-       <h2>Total</h2>
+       <h2>Total:</h2>
        <h2>{this.state.carrosComprados.reduce((a,b)=>
-       a+b.preço,0
-       )}</h2>
+       a+b.preço,0).toLocaleString("pt-BR",{style: "currency",currency:"BRL", currencyDisplay:"symbol"})}</h2>
     </div>
     </div>
     </Carrosbonito>
